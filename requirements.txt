@@ -5,3 +5,4 @@ python-dotenv
 django-redis
 django-unfold
 psycopg2 
+django_ratelimit 
