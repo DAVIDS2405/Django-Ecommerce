@@ -24,6 +24,7 @@ import os
 
 load_dotenv()
 API_VERSION = os.getenv("API_VERSION")
+
 urlpatterns = [
     path("", RedirectView.as_view(
         url=f"{API_VERSION}/redoc/", permanent=True)),
