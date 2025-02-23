@@ -11,6 +11,7 @@ class CustomUser(AbstractUser):
         unique=True,
         blank=False,
         null=False,
+        editable=False,
         default=uuid.uuid4
     )
     phone_number = models.CharField(max_length=15, blank=True, null=True)
