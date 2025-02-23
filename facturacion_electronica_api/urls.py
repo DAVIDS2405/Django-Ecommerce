@@ -45,5 +45,4 @@ urlpatterns = [
 
     path(f'{API_VERSION}/admin/', admin.site.urls),
     path(f"{API_VERSION}/", include('users.urls')),
-    path(f"{API_VERSION}/health_check", health_check)
 ]
