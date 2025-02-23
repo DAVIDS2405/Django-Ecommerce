@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.http import JsonResponse
 from django.urls import include, path
 from django.views.generic import RedirectView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
@@ -24,6 +25,11 @@ import os
 
 load_dotenv()
 API_VERSION = os.getenv("API_VERSION")
+
+
+def health_check(request):
+    return JsonResponse({"status": "Server is running"}, status=200)
+
 
 urlpatterns = [
     path("", RedirectView.as_view(
@@ -38,5 +44,6 @@ urlpatterns = [
          SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
 
     path(f'{API_VERSION}/admin/', admin.site.urls),
-    path(f"{API_VERSION}/", include('users.urls'))
+    path(f"{API_VERSION}/", include('users.urls')),
+    path(f"{API_VERSION}/health_check", health_check)
 ]
